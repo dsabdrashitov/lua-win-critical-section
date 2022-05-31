@@ -1,6 +1,7 @@
 #include "main.h"
 
 #include <windows.h>
+#include "critical_section.h"
 
 
 // DLL entry point
@@ -9,13 +10,12 @@ BOOL APIENTRY DllMain(HANDLE hModule, DWORD  fdwReason, LPVOID lpReserved) {
 }
 
 static const struct luaL_Reg library_functions[] = {
-    // Copied project template from winpipe
-    // {"winpipe_ByteBlock_setDWORD", winpipe::byteblock::lib_setDWORD},
+    {"CriticalSection_new", wincs::critical_section::CriticalSection_new},
     {NULL, NULL}
 };
 
 extern "C" LUALIB_API int luaopen_wincs(lua_State* L) {
-    //winpipe::byteblock::registerMeta(L);
+    wincs::critical_section::registerMeta(L);
     luaL_newlib(L, library_functions);
     return 1;
 }

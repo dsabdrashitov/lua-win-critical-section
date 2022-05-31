@@ -11,7 +11,6 @@ local wincs = package.loadlib(root_path .. "luawincs.dll", "luaopen_wincs")()
 -- Restore path
 package.path = prev_path
 
--- copied project template from winpipe
--- lua_win_pipe.mask = winpipe.winpipe_mask
+lua_win_critical_section.CriticalSection = wincs.CriticalSection_new
 
 return lua_win_critical_section

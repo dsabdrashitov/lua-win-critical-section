@@ -2,6 +2,7 @@
 
 #include <windows.h>
 #include "critical_section.h"
+#include "sleep.h"
 
 
 // DLL entry point
@@ -11,6 +12,7 @@ BOOL APIENTRY DllMain(HANDLE hModule, DWORD  fdwReason, LPVOID lpReserved) {
 
 static const struct luaL_Reg library_functions[] = {
     {"CriticalSection_new", wincs::critical_section::CriticalSection_new},
+    {"sleep", wincs::sleep::sleep},
     {NULL, NULL}
 };
 

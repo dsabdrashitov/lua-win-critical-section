@@ -12,5 +12,6 @@ local wincs = package.loadlib(root_path .. "luawincs.dll", "luaopen_wincs")()
 package.path = prev_path
 
 lua_win_critical_section.CriticalSection = wincs.CriticalSection_new
+lua_win_critical_section.sleep = wincs.sleep
 
 return lua_win_critical_section

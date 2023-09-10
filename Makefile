@@ -2,7 +2,7 @@ OUTPUT_NAME := lua-win-critical-section
 DLL_NAME := luawincs
 
 CC := g++
-LIBS := lua53
+LIBS := lua54
 
 BUILD_DIR := ./build
 SRC_PREFIX := ./src
@@ -31,16 +31,16 @@ all: $(OUTPUT_DLL) $(LUAB)
 just_dll: $(OUTPUT_DLL)
 
 $(OUTPUT_DLL): $(OBJS)
-	-mkdir $(subst /,\,$(dir $@))
+	-mkdir -p $(dir $@)
 	$(CC) -shared $(OBJS) -o $@ $(LDFLAGS)
 
 $(OBJ_PREFIX)/%.o: $(SRC_PREFIX)/%.cpp $(HEADERS)
-	-mkdir $(subst /,\,$(dir $@))
+	-mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUTPUT_DIR)/%.lua: $(SRC_PREFIX)/%.lua
-	-mkdir $(subst /,\,$(dir $@))
-	copy /Y $(subst /,\,$< $@)
+	-mkdir -p $(dir $@)
+	cp $< $@
 
 clean:
-	-rd /s /q $(subst /,\,$(BUILD_DIR))
+	-if [ -d "$(BUILD_DIR)" ]; then rm -r $(BUILD_DIR); fi
